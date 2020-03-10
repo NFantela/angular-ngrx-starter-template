@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "analyze": "ng build --prod --stats-json && webpack-bundle-analyzer ./dist/my-epic-app/stats-es2015.json"
+    "analyze": "ng build --prod --stats-json && webpack-bundle-analyzer ./dist/demo-app-template/stats-es2015.json"
   },
   "private": true,
   "dependencies": {

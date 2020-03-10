@@ -1,0 +1,11 @@
+@import '../pallete/pallete';
+
+$dark-primary: mat-palette($aqua);
+$dark-accent: mat-palette($yellow);
+$dark-warn: mat-palette($danger-red, 600);
+
+$dark-theme: mat-dark-theme(
+  $dark-primary,
+  $dark-accent,
+  $dark-warn
+);

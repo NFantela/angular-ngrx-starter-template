@@ -1,0 +1,11 @@
+@import '../pallete/pallete';
+
+$light-primary: mat-palette($aqua, 300);
+$light-accent: mat-palette($yellow);
+$light-warn: mat-palette($danger-red, 600);
+
+$light-theme: mat-light-theme(
+  $light-primary,
+  $light-accent,
+  $light-warn
+);

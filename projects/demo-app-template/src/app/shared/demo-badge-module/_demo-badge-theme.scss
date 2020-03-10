@@ -1,0 +1,21 @@
+
+
+@mixin optional-demo-badge-mixin($someVar){}
+
+// main theme mixin that accepts theme colors
+@mixin demo-badge-theme($theme) {
+    // define colors from theme
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $primary: map-get($theme, primary);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+    // optional additional mixins if any are needed
+    @include optional-demo-badge-mixin(1);
+} 
+// main typography mixin accepting typography config
+@mixin demo-badge-typography($config){
+    .demo-badge-content {
+        font-family: get-font-family($config);
+      }
+}

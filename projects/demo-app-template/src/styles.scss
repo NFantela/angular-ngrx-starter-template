@@ -1,4 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// global styles reset
+@import './scss/styles/reset';
+
+// material theming
+@import '~@angular/material/theming';
+@include mat-core();
+
+// local themes
+@import './scss/themes/dark-theme.scss';
+@import './scss/themes/light-theme.scss';
+
+// app specific mixins
+@import './app/shared/demo-badge-module/demo-badge-theme';
+
+@mixin custom-components-theme($theme) {
+    @include demo-badge-theme($theme);
+    // all other components / directives  global style mixins
+}
+
+// create 2 classes to be added to top wrapper element on page
+.light-theme {
+    @include angular-material-theme($light-theme);
+    @include custom-components-theme($light-theme);
+}
+
+.black-theme {
+    @include angular-material-theme($dark-theme);
+    @include custom-components-theme($dark-theme);
+}
