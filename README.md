@@ -69,7 +69,8 @@ Take note not to provide their lazily loaded (included ) services in 'root' but 
 # CORE SERVICES and interceptors
 <h5>Http Interceptor</h5>
 <h5>Err Handler service</h5>
-<h5>Local storage service</h5>
+<h5>Local storage service </h5>
+<p>Run in app component ngOnInit via testLocalStorage() method </p>
 <h5>Notification service</h5>
 
 # NGRX Store
