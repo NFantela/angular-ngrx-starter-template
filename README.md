@@ -74,6 +74,7 @@ Take note not to provide their lazily loaded (included ) services in 'root' but 
 <h5>Notification service</h5>
 
 # NGRX Store
+-- alternate store selector this.store.pipe(selectTheme) VS this.store.select(selectTheme)
 <h3>Core Store</h3>
 core-store folder - also contains router store importend in core.state.ts
 -- core state be like:

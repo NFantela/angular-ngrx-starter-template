@@ -1,0 +1,20 @@
+@import '../../../../../scss/utilities/media-queries';
+
+.main-stuff{
+    // media queries testing
+    @include media-queries(x-small){
+        background:red;
+    }
+    @include media-queries(small){
+        background:aqua;
+    }
+    @include media-queries(medium){
+        background:green;
+    }
+    @include media-queries(large){
+        background:turquoise;
+    }
+    @include media-queries(x-large){
+        background:gray;
+    }
+}

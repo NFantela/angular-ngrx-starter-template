@@ -1,0 +1,39 @@
+
+@import '../styles/variables';
+
+
+//   xs: 0,
+//   sm: 576px,
+//   md: 768px,
+//   lg: 992px,
+//   xl: 1200px
+
+@mixin media-queries($break){
+
+    @if $break == 'x-small' {
+        @media(min-width: map-get($grid-breakpoints, xs)) 
+            and (max-width: map-get($grid-breakpoints, sm)) {
+                    @content;
+        }
+
+    } @else if $break == 'small' {
+        @media(min-width: map-get($grid-breakpoints, sm) + 1) {
+            @content;
+        }        
+    } @else if $break == 'medium' {
+        @media(min-width: map-get($grid-breakpoints, md)) {
+            @content;
+        }   
+    } @else if $break == 'large' {
+        @media(min-width: map-get($grid-breakpoints, lg)) {
+            @content;
+        }   
+    } @else if $break == 'x-large' {
+        @media(min-width: map-get($grid-breakpoints, xl)) {
+            @content;
+        }   
+    } @else {
+        @error "Whoops! No breakpoint could be matched for `#{$break}` !";
+    }
+
+}

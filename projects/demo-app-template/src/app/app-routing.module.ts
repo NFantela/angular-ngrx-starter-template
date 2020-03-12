@@ -11,6 +11,9 @@ const routes: Routes = [
   { path: 'home', 
     loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule) 
   },
+  { path: 'auth', 
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) 
+  },
   { path: 'multi-settings', 
     loadChildren: () => import('./features/multi-settings/multi-settings.module').then(m => m.MultiSettingsModule) 
   },
