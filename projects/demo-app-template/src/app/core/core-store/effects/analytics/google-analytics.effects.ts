@@ -9,13 +9,17 @@ export class GoogleAnalyticsEffects {
   
  // remember to use @SendAnalytics() decorator for specific events 
  // this is just for page navigation
-  pageView = createEffect(
+  pageView$ = createEffect(
     () => () =>
       this.router.events.pipe(
         filter(event => event instanceof NavigationEnd),
         tap((event: NavigationEnd) => {
-          (<any>window).ga('set', 'page', event.urlAfterRedirects);
-          (<any>window).ga('send', 'pageview');
+          const analyticsFn:Function | undefined = (<any>window).ga;
+          
+          if(analyticsFn){
+            analyticsFn('set', 'page', event.urlAfterRedirects);
+            analyticsFn('send', 'pageview');
+          }
         })
       ),
     { dispatch: false }

@@ -84,3 +84,6 @@ export interface AppState {
 }
 <h4>Auth</h4>
 Nested in core module has its own store and models
+<h4>Settings store</h4>
+-- settings effects combine actions and selectors
+-- take note of persistSettingsToLocalStorage$ effect he listens to actions to store them to local storage e.g. current theme

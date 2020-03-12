@@ -8,7 +8,7 @@ import { NIGHT_MODE_THEME } from '../../../models/settings.model';
 
 export interface SettingsState {
   language: string;
-  theme: string;
+  theme: string; // LIGHT-THEME || DARK-THEME
   autoNightMode: boolean;
   nightTheme: string;
   pageAnimations: boolean;
@@ -19,7 +19,7 @@ export interface SettingsState {
 
 export const initialState: SettingsState = {
   language: 'en',
-  theme: 'DEFAULT-THEME',
+  theme: 'LIGHT-THEME',
   autoNightMode: false,
   nightTheme: NIGHT_MODE_THEME,
   pageAnimations: true,

@@ -24,7 +24,7 @@
     @include custom-components-theme($light-theme);
 }
 
-.black-theme {
+.dark-theme {
     @include angular-material-theme($dark-theme);
     @include custom-components-theme($dark-theme);
 }

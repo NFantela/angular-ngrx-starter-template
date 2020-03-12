@@ -1,4 +1,4 @@
-<div class="wrapper light-theme">
+<div [class]="'wrapper ' + (currentTheme$ | async)">
     <!-- theming classes should be dynamic from the store - add later -->
 
     <router-outlet></router-outlet>
