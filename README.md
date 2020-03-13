@@ -88,3 +88,5 @@ Nested in core module has its own store and models
 <h4>Settings store</h4>
 -- settings effects combine actions and selectors
 -- take note of persistSettingsToLocalStorage$ effect he listens to actions to store them to local storage e.g. current theme
+<h4>Feature store and feature selector</h4>
+-- e.g. like one defined in  multi-settings.state.ts
