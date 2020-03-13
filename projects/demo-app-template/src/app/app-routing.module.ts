@@ -1,25 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { environment } from '../environments/environment';
 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: environment.navRoutes.home,
     pathMatch: 'full'
   },
-  { path: 'home', 
+  { path: environment.navRoutes.home, 
     loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule) 
   },
-  { path: 'auth', 
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) 
-  },
-  { path: 'multi-settings', 
+  { path: environment.navRoutes.multiSettings, 
     loadChildren: () => import('./features/multi-settings/multi-settings.module').then(m => m.MultiSettingsModule) 
   },
   {
     path: '**',
-    redirectTo: 'home'
+    redirectTo: environment.navRoutes.home
   }
 ];
 

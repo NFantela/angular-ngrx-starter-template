@@ -4,7 +4,12 @@
 
 export const environment = {
   production: false,
-  appName:"Ngrx starter template"
+  appName:"Ngrx starter template",
+  navRoutes:{
+    auth: 'auth',
+    home: 'home',
+    multiSettings: 'multi-settings'
+  }
 };
 
 /*

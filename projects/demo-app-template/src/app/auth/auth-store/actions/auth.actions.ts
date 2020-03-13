@@ -3,12 +3,20 @@ import { IAuthUser } from '../models/auth-user';
 
 export const actionLogin = createAction(
     '[Auth] Login User',
-    props<{ loginUser: IAuthUser }>()
+    props<{ email: string, password:string }>()
+);
+export const actionLoginSucccess = createAction(
+    '[Auth] Login User Success',
+    props<{ user:IAuthUser }>()
+);
+export const actionLoginFail = createAction(
+    '[Auth] Login User Fail',
+    props<{ err:any }>()
 );
 
 export const registerUser = createAction(
     '[Auth] Login User',
-    props<{ loginUser: any }>()
+    props<{ email: string, password:string, name:string }>()
 );
 
 export const authLogout = createAction('[Auth] Logout');
