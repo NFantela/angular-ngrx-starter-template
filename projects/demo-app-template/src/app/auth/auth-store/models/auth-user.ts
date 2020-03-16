@@ -3,3 +3,8 @@ export interface IAuthUser{
     name:string;
     lastName?:string;
 }
+
+export interface ILocalStorageAuth {
+    isAuthenticated: boolean; 
+    user:IAuthUser;
+}

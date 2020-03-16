@@ -5,6 +5,11 @@
     <button mat-raised-button color="accent">Accent</button>
     <button mat-raised-button color="warn">Warn</button>
 </div>
+
+<h4>Login / Out</h4>
+<p>{{(loggedIn$ | async) ? 'Logged In' : 'Logged Out'}}</p>
+<button mat-raised-button color="primary" (click)="logInUser()">Log In</button>
+
 <button mat-button [matMenuTriggerFor]="menu">Menu</button>
 <mat-menu #menu="matMenu">
   <button mat-menu-item *ngFor="let theme of themes" (click)="onThemeSelect(theme)">{{theme}}</button>
