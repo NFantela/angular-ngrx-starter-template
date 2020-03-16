@@ -1,5 +1,6 @@
 <p>home works!</p>
-<a [routerLink]="['/multi-settings']">Navigate to settings moduel users</a>
+<a [routerLink]="['/multi-settings']">Navigate to settings moduel users (requires AUTH)</a>
+<hr />
 <div class="main-stuff">
     <button mat-raised-button color="primary">Primary</button>
     <button mat-raised-button color="accent">Accent</button>
@@ -8,7 +9,12 @@
 
 <h4>Login / Out</h4>
 <p>{{(loggedIn$ | async) ? 'Logged In' : 'Logged Out'}}</p>
-<button mat-raised-button color="primary" (click)="logInUser()">Log In</button>
+
+<button mat-raised-button color="primary" *ngIf="(loggedIn$ | async); else logOut" (click)="logInOutUser(false)">Log Out</button>
+<ng-template #logOut>
+  <button mat-raised-button color="accent" (click)="logInOutUser(true)">Log In</button>
+</ng-template>
+
 
 <button mat-button [matMenuTriggerFor]="menu">Menu</button>
 <mat-menu #menu="matMenu">

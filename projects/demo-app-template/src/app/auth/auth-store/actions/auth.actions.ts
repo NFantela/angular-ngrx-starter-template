@@ -19,4 +19,4 @@ export const registerUser = createAction(
     props<{ email: string, password:string, name:string }>()
 );
 
-export const authLogout = createAction('[Auth] Logout');
+export const actionLogout = createAction('[Auth] Logout');

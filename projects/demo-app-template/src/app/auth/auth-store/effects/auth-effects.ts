@@ -4,7 +4,7 @@ import { ofType, createEffect, Actions } from '@ngrx/effects';
 import { tap, switchMap, map, catchError, filter } from 'rxjs/operators';
 
 
-import { actionLogin, actionLoginFail, actionLoginSucccess, authLogout } from '../actions/auth.actions';
+import { actionLogin, actionLoginFail, actionLoginSucccess, actionLogout } from '../actions/auth.actions';
 import { LocalStorageService } from '../../../core/services/local-storage/local-storage.service';
 import { AuthService } from '../../services/auth.service';
 import { IAuthUser, ILocalStorageAuth } from '../models/auth-user';
@@ -60,7 +60,7 @@ export class AuthEffects {
   logout$ = createEffect(
     () =>
       this._actions$.pipe(
-        ofType(authLogout),
+        ofType(actionLogout),
         tap(() => {
           this._router.navigate(['']);
           this._localStorageService.setItem(AUTH_KEY, {

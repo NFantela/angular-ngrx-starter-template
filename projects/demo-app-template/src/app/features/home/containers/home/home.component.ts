@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'projects/demo-app-template/src/app/core/core-store/core.state';
 import { actionSettingsChangeTheme } from 'projects/demo-app-template/src/app/core/core-store/actions/settings/settings.actions';
-import { actionLogin } from 'projects/demo-app-template/src/app/auth/auth-store/actions/auth.actions';
+import { actionLogin, actionLogout } from 'projects/demo-app-template/src/app/auth/auth-store/actions/auth.actions';
 import { Observable } from 'rxjs';
 import { selectIsAuthenticated } from 'projects/demo-app-template/src/app/auth/auth-store/selectors/auth-selectors';
 
@@ -27,8 +27,12 @@ export class HomeComponent implements OnInit {
     this.store.dispatch(actionSettingsChangeTheme({ theme }));
   }
 
-  logInUser(){
-    this.store.dispatch(actionLogin({email:"nfantela@gmail.com", password: "asdasdx"}))
+  logInOutUser(logIn:boolean){
+    if(logIn){
+      this.store.dispatch(actionLogin({email:"nfantela@gmail.com", password: "asdasdx"}))
+    } else {
+      this.store.dispatch(actionLogout())
+    }
   }
 
 }

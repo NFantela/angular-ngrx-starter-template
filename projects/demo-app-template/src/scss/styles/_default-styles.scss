@@ -1,0 +1,8 @@
+@import '~@angular/material/theming';
+
+@mixin set-default-styles($theme){
+    $primary: map-get($theme, primary);
+    a{
+        color:mat-color($primary);
+    }
+}

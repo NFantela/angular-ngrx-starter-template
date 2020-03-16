@@ -1,6 +1,7 @@
 
-// global styles reset
+// global styles reset & default styles mixin
 @import './scss/styles/reset';
+@import './scss/styles/default-styles';
 
 // material theming
 @import '~@angular/material/theming';
@@ -14,6 +15,8 @@
 @import './app/shared/demo-badge-module/demo-badge-theme';
 
 @mixin custom-components-theme($theme) {
+    // set global styles
+    @include set-default-styles($theme);
     @include demo-badge-theme($theme);
     // all other components / directives  global style mixins
 }

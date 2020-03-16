@@ -23,6 +23,7 @@ export class AuthGuardService implements CanActivate {
       select(selectIsAuthenticated),
       tap(isAuth => {
         if(!isAuth){
+          console.log(isAuth, "guard")
           this._router.navigate([`/${environment.navRoutes.auth}`])
         }
       })

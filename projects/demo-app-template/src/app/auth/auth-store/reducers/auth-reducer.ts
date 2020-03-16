@@ -35,7 +35,12 @@ const reducer = createReducer(
       ...state,
       loading: false,
       error: err
-    }))
+   })),
+   on(authActions.actionLogout, (state) => ({
+    ...state,
+    isAuthenticated:false,
+    authUser:null
+  })),
 
 );
 
