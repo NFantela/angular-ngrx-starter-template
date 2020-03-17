@@ -27,13 +27,13 @@ const INIT = of('starter-init-effect-trigger');
 @Injectable()
 export class SettingsEffects {
   constructor(
-    private actions$: Actions,
-    private store: Store<AppState>,
+    private _actions$: Actions,
+    private _store: Store<AppState>,
     private router: Router,
-    private overlayContainer: OverlayContainer,
-    private localStorageService: LocalStorageService,
-    private titleService: TitleService,
-    private animationsService: AnimationsService,
+    private _overlayContainer: OverlayContainer,
+    private _localStorageService: LocalStorageService,
+    private _titleService: TitleService,
+    private _animationsService: AnimationsService,
    // private ngZone: NgZone
   ) {}
 
@@ -51,7 +51,7 @@ export class SettingsEffects {
   // );
 
   persistSettingsToLocalStorage$ = createEffect(() =>
-      this.actions$.pipe(
+      this._actions$.pipe(
         ofType(
           actionSettingsChangeAnimationsElements,
           actionSettingsChangeAnimationsPage,
@@ -61,16 +61,16 @@ export class SettingsEffects {
           actionSettingsChangeStickyHeader,
           actionSettingsChangeTheme
         ),
-        withLatestFrom(this.store.pipe(select(selectSettingsState))),
+        withLatestFrom(this._store.pipe(select(selectSettingsState))),
         tap(([action, settings]) =>
-          this.localStorageService.setItem(SETTINGS_KEY, settings)
+          this._localStorageService.setItem(SETTINGS_KEY, settings)
         )
       ),
     { dispatch: false }
   );
 
   updateRouteAnimationType$ = createEffect(() =>
-      merge( INIT, this.actions$.pipe(
+      merge( INIT, this._actions$.pipe(
           ofType(
             actionSettingsChangeAnimationsElements,
             actionSettingsChangeAnimationsPage
@@ -79,12 +79,12 @@ export class SettingsEffects {
       ).pipe(
         withLatestFrom(
           combineLatest([
-            this.store.pipe(select(selectPageAnimations)),
-            this.store.pipe(select(selectElementsAnimations))
+            this._store.pipe(select(selectPageAnimations)),
+            this._store.pipe(select(selectElementsAnimations))
           ])
         ),
         tap(([action, [pageAnimations, elementsAnimations]]) =>
-          this.animationsService.updateRouteAnimationType(
+          this._animationsService.updateRouteAnimationType(
             pageAnimations,
             elementsAnimations
           )
@@ -95,10 +95,10 @@ export class SettingsEffects {
 
   /** Updates Material overlay element classes */
   updateTheme$ = createEffect(() =>
-      merge(INIT, this.actions$.pipe(ofType(actionSettingsChangeTheme))).pipe(
-        withLatestFrom(this.store.pipe(select(selectEffectiveTheme))),
+      merge(INIT, this._actions$.pipe(ofType(actionSettingsChangeTheme))).pipe(
+        withLatestFrom(this._store.pipe(select(selectEffectiveTheme))),
         tap(([action, effectiveTheme]) => {
-          const classList = this.overlayContainer.getContainerElement()
+          const classList = this._overlayContainer.getContainerElement()
             .classList;
           const toRemove = Array.from(classList).filter((item: string) =>
             item.includes('-theme')
@@ -115,11 +115,11 @@ export class SettingsEffects {
 
   setTitle$ = createEffect(() =>
       merge(
-        this.actions$.pipe(ofType(actionSettingsChangeLanguage)),
+        this._actions$.pipe(ofType(actionSettingsChangeLanguage)),
         this.router.events.pipe(filter(event => event instanceof ActivationEnd))
       ).pipe(
         tap(() => {
-          this.titleService.setTitle(
+          this._titleService.setTitle(
             this.router.routerState.snapshot.root,
           );
         })
