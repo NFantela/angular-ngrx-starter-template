@@ -1,4 +1,5 @@
 
+@import '~@angular/material/theming';
 
 @mixin optional-demo-badge-mixin($someVar){}
 
@@ -12,6 +13,10 @@
     $foreground: map-get($theme, foreground);
     // optional additional mixins if any are needed
     @include optional-demo-badge-mixin(1);
+    .demo-badge{
+        background-color: mat-color($warn);
+        color: mat-color($accent);
+    }
 } 
 // main typography mixin accepting typography config
 @mixin demo-badge-typography($config){

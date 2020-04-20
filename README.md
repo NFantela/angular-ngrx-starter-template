@@ -65,6 +65,8 @@ HOME and ADMIN modules
 Contains as many reusable modules as you may need e.g. Material elements
 Take note not to provide their lazily loaded (included ) services in 'root' but in module providers
 -- Also if they have global styles create importable scss file e.g. _demo-badge.scss
+-- take note on extracting Material colors e.g. import : @import '~@angular/material/theming';
+   then use $accent: map-get($theme, accent);  + background-color: mat-color($warn);
 
 # CORE SERVICES and interceptors
 <h5>Http Interceptor</h5>
