@@ -1,9 +1,9 @@
 # AngularArchitectureStarter
-
+<!-- 
 -- tips on : https://medium.com/@tomastrajan/how-to-build-epic-angular-app-with-clean-architecture-91640ed1656
-
 github demo:
 https://github.com/tomastrajan/angular-ngrx-material-starter
+-->
 
 # Process
 1) Install workspace
