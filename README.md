@@ -92,3 +92,8 @@ Nested in core module has its own store and models
 -- take note of persistSettingsToLocalStorage$ effect he listens to actions to store them to local storage e.g. current theme
 <h4>Feature store and feature selector</h4>
 -- e.g. like one defined in  multi-settings.state.ts
+<h4>Relative imports</h4>
+-- in tsconfig.json
+   "paths": {
+      "@demo-app/*": ["projects/demo-app-template/src/app/*"]
+    },

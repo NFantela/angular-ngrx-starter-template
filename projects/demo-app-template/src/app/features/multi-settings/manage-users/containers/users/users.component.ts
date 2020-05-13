@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { IRegularUser } from '../../../models/regular-user.model';
 import { selectFilteredUsers, selectSettingsUsersLoading } from '../../../multi-settings-store/selectors/users/users.selectors';
 import { actionLoadUsers, actionDeleteUserSuccess } from '../../../multi-settings-store/actions/users/users.actions';
+import { SendAnalytics } from '@demo-app/shared/decorators/analytics.decorator';
 
 @Component({
     selector: 'manage-users',
@@ -35,6 +36,7 @@ export class ManageUsersComponent implements OnInit {
         this.usersLoading$ = this._store.pipe(select(selectSettingsUsersLoading));
     }
 
+    @SendAnalytics('delete-user-btn', 'deleting user with click')
     handleDeleteUser(user:IRegularUser){
         // we just shortcut to delete user success directly normaly del user action is first then service etc..
         this._store.dispatch(actionDeleteUserSuccess({user}));
