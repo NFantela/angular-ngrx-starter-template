@@ -22,6 +22,7 @@
 }
 
 // create 2 classes to be added to top wrapper element on page
+// always make sure that these classnames match selectEffectiveTheme selector and match THEME_NAME enum
 .light-theme {
     @include angular-material-theme($light-theme);
     @include custom-components-theme($light-theme);

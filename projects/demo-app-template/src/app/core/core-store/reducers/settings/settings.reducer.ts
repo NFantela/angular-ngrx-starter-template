@@ -4,7 +4,7 @@ import { actionSettingsChangeLanguage, actionSettingsChangeTheme,
   actionSettingsChangeAutoNightMode, actionSettingsChangeStickyHeader, 
   actionSettingsChangeAnimationsPage, actionSettingsChangeAnimationsElements, 
   actionSettingsChangeHour, actionSettingsChangeAnimationsPageDisabled } from '../../actions/settings/settings.actions';
-import { NIGHT_MODE_THEME } from '../../../models/settings.model';
+import { NIGHT_MODE_THEME, THEME_NAME } from '../../../models/settings.model';
 
 export interface SettingsState {
   language: string;
@@ -19,7 +19,7 @@ export interface SettingsState {
 
 export const initialState: SettingsState = {
   language: 'en',
-  theme: 'LIGHT-THEME',
+  theme: THEME_NAME.LIGHT,
   autoNightMode: false,
   nightTheme: NIGHT_MODE_THEME,
   pageAnimations: true,
