@@ -6,6 +6,7 @@
 // material theming
 @import '~@angular/material/theming';
 @include mat-core();
+$typography-config: mat-typography-config();
 
 // local themes
 @import './scss/themes/dark-theme.scss';
@@ -17,7 +18,9 @@
 @mixin custom-components-theme($theme) {
     // set global styles
     @include set-default-styles($theme);
+    // set individual element global styles (color and typography if needed)
     @include demo-badge-theme($theme);
+    @include demo-badge-typography($typography-config);
     // all other components / directives  global style mixins
 }
 

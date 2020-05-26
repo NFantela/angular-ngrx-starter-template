@@ -11,7 +11,8 @@ import { SendAnalytics } from '@demo-app/shared/decorators/analytics.decorator';
     template: `
         <div>
             Manage users here
-            <h3 *ngIf="usersLoading$">Users loading</h3>
+            <h3 *ngIf="usersLoading$" >Users loading</h3>
+            <p demo-badge>Demo badge demo</p>
             <ul>
                 <li *ngFor="let user of filteredUsers$ | async" (click)="handleDeleteUser(user)">
                     {{ user.name}} - {{ user.lastName}}
