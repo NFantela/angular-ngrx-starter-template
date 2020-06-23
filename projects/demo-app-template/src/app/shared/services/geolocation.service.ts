@@ -53,6 +53,8 @@ export class GeolocationService extends Observable<Position> {
             );
         });
         // unsubscribe / teardown logic
+        // constructor return returns a new object instead "this" 
+        // in our case we call Observable s pipe() method 
         return this.pipe(
             finalize(() => geolocationRef.clearWatch(watchPositionId)),
             shareReplay({ bufferSize: 1, refCount: true }),
