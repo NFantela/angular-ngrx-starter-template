@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, EMPTY } from 'rxjs';
 import { IRegularUser } from '../../../models/regular-user.model';
 import { selectFilteredUsers, selectSettingsUsersLoading } from '../../../multi-settings-store/selectors/users/users.selectors';
 import { actionLoadUsers, actionDeleteUserSuccess } from '../../../multi-settings-store/actions/users/users.actions';
 import { SendAnalytics } from '@demo-app/shared/decorators/analytics.decorator';
+import { MultiSettingsState } from '@demo-app/features/multi-settings/multi-settings-store/multi-settings.state';
 
 @Component({
     selector: 'manage-users',
@@ -24,11 +25,11 @@ import { SendAnalytics } from '@demo-app/shared/decorators/analytics.decorator';
 export class ManageUsersComponent implements OnInit {
     
     constructor(
-        private _store: Store,
+        private _store: Store<MultiSettingsState>,
     ) {}
     
-    filteredUsers$:Observable<IRegularUser[]>;
-    usersLoading$: Observable<boolean>;
+    filteredUsers$:Observable<IRegularUser[]> = EMPTY;
+    usersLoading$: Observable<boolean> = EMPTY;
 
     ngOnInit(){
         this._store.dispatch(actionLoadUsers());

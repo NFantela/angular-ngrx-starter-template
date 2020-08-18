@@ -4,7 +4,7 @@ import { authReducer, IAuthState } from './reducers/auth-reducer';
 
 
 export const AUTH_FEATURE_NAME = 'auth';
-export const selectAuthState = createFeatureSelector<State, IAuthModuleState>(
+export const selectAuthState = createFeatureSelector<AuthState, IAuthModuleState>(
   AUTH_FEATURE_NAME
 );
 export const reducers: ActionReducerMap<IAuthModuleState> = {
@@ -15,6 +15,6 @@ export interface IAuthModuleState {
   auth:IAuthState
 }
 
-export interface State extends AppState {
+export interface AuthState extends AppState {
   [AUTH_FEATURE_NAME]: IAuthModuleState;
 }

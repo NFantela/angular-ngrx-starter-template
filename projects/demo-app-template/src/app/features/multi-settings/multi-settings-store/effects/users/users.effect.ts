@@ -5,7 +5,7 @@ import { debounceTime, switchMap, map, catchError, concatMap, tap } from 'rxjs/o
 
 
 
-import { State } from '../../multi-settings.state';
+import { MultiSettingsState } from '../../multi-settings.state';
 import * as usersAction from '../../actions/users/users.actions';
 import { UsersService } from '../../../services/users/users.service';
 import { of } from 'rxjs';
@@ -16,7 +16,7 @@ import { NotificationService } from 'projects/demo-app-template/src/app/core/ser
 export class MultiSettingsUsersEffects {
   constructor(
     private actions$: Actions,
-    private store: Store<State>,
+    private store: Store<MultiSettingsState>,
     private _usersService:UsersService,
     private _nofiricationsService:NotificationService
   ) {}

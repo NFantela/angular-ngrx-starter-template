@@ -3,6 +3,7 @@ import { LocalStorageService } from '../core/services/local-storage/local-storag
 import { Observable, EMPTY } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectTheme } from '../core/core-store/selectors/settings.selectors';
+import { AppState } from '@demo-app/core/core-store/core.state';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { selectTheme } from '../core/core-store/selectors/settings.selectors';
 export class AppComponent implements OnInit {
 
   constructor(
-    private store: Store,
+    private store: Store<AppState>,
     private _storageService: LocalStorageService
   ){}
 

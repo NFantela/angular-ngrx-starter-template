@@ -1,10 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { AppState } from 'projects/demo-app-template/src/app/core/core-store/core.state';
 import { actionSettingsChangeTheme } from 'projects/demo-app-template/src/app/core/core-store/actions/settings/settings.actions';
 import { actionLogin, actionLogout } from 'projects/demo-app-template/src/app/auth/auth-store/actions/auth.actions';
 import { Observable, EMPTY } from 'rxjs';
 import { selectIsAuthenticated } from 'projects/demo-app-template/src/app/auth/auth-store/selectors/auth-selectors';
+import { AuthState } from '@demo-app/auth/auth-store/auth-state';
 
 @Component({
   selector: 'my-demo-prefix-home',
@@ -14,7 +14,7 @@ import { selectIsAuthenticated } from 'projects/demo-app-template/src/app/auth/a
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<AuthState>) { }
 
   themes:string[] = ['LIGHT-THEME', 'DARK-THEME'];
   loggedIn$:Observable<boolean> = EMPTY;

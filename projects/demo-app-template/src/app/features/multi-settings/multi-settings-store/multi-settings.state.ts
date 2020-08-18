@@ -4,7 +4,7 @@ import { usersReducer, IUsersState } from './reducers/users/users.reducer';
 
 
 export const FEATURE_NAME = 'multi-settings';
-export const selectMultiSettings = createFeatureSelector<State, IMultiSettingsState>(
+export const selectMultiSettings = createFeatureSelector<MultiSettingsState, IMultiSettingsState>(
   FEATURE_NAME
 );
 export const reducers: ActionReducerMap<IMultiSettingsState> = {
@@ -24,6 +24,6 @@ export interface IMultiSettingsState {
   users:IUsersState
 }
 
-export interface State extends AppState {
+export interface MultiSettingsState extends AppState {
   [FEATURE_NAME]: IMultiSettingsState;
 }

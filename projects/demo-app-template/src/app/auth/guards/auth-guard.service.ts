@@ -3,11 +3,11 @@ import { CanActivate, Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { AppState } from '../../core/core-store/core.state';
 import { selectIsAuthenticated } from '../auth-store/selectors/auth-selectors';
 import { tap } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
+import { AuthState } from '../auth-store/auth-state';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ import { environment } from '../../../environments/environment';
 export class AuthGuardService implements CanActivate {
 
   constructor(
-    private _store: Store<AppState>,
+    private _store: Store<AuthState>,
     private _router: Router) {}
 
   canActivate(): Observable<boolean> {
