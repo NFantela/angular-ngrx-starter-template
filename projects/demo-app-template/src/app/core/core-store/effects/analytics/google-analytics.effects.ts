@@ -12,7 +12,7 @@ export class GoogleAnalyticsEffects {
   pageView$ = createEffect(
     () => () =>
       this.router.events.pipe(
-        filter(event => event instanceof NavigationEnd),
+        filter((event:any) => event instanceof NavigationEnd),
         tap((event: NavigationEnd) => {
           const analyticsFn:Function | undefined = (<any>window).ga;
           

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../core/services/local-storage/local-storage.service';
-import { Observable } from 'rxjs';
-import { Store, select } from '@ngrx/store';
+import { Observable, EMPTY } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { selectTheme } from '../core/core-store/selectors/settings.selectors';
 
 
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   ){}
 
 
-  currentTheme$: Observable<string>;
+  currentTheme$: Observable<string> = EMPTY;
 
   ngOnInit(){
     this._storageService.testLocalStorage();
