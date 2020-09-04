@@ -14,6 +14,8 @@ import { MultiSettingsState } from '@demo-app/features/multi-settings/multi-sett
             Manage users here
             <h3 *ngIf="usersLoading$" >Users loading</h3>
             <p demo-badge>Demo badge demo</p>
+            <p>Lazy loaded svg dino icon example</p>
+            <lazy-icon name="dino-crying"></lazy-icon>
             <ul>
                 <li *ngFor="let user of filteredUsers$ | async" (click)="handleDeleteUser(user)">
                     {{ user.name}} - {{ user.lastName}}
