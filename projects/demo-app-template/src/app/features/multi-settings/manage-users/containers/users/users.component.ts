@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, ElementRef } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable, EMPTY } from 'rxjs';
 import { IRegularUser } from '../../../models/regular-user.model';
@@ -6,6 +6,11 @@ import { selectFilteredUsers, selectSettingsUsersLoading } from '../../../multi-
 import { actionLoadUsers, actionDeleteUserSuccess } from '../../../multi-settings-store/actions/users/users.actions';
 import { SendAnalytics } from '@demo-app/shared/decorators/analytics.decorator';
 import { MultiSettingsState } from '@demo-app/features/multi-settings/multi-settings-store/multi-settings.state';
+import { DOCUMENT } from '@angular/common';
+import { WINDOW } from '@ng-web-apis/common';
+import { typedFromEvent } from '@demo-app/shared/utils/type_utils';
+import { CustomUnsubscribeService } from '@demo-app/shared/services/unsubscribe.service';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'manage-users',
@@ -22,13 +27,25 @@ import { MultiSettingsState } from '@demo-app/features/multi-settings/multi-sett
                 </li>
             </ul>
         </div>
-    `
+    `,
+    providers:[CustomUnsubscribeService]
 })
 export class ManageUsersComponent implements OnInit {
     
     constructor(
         private _store: Store<MultiSettingsState>,
-    ) {}
+        @Inject(DOCUMENT) document: Document,
+        @Inject(WINDOW) window: Window,
+        { nativeElement }: ElementRef<HTMLElement>,
+        private _unsubService:CustomUnsubscribeService
+    ) {
+
+      // event is MouseEvent, currentTarget is Window
+      typedFromEvent(window, "click").pipe(takeUntil(this._unsubService)).subscribe(console.log);
+      // event is ClipboardEvent, currentTarget is Document
+      typedFromEvent(document, "copy").pipe(takeUntil(this._unsubService)).subscribe(console.log);
+      
+    }
     
     filteredUsers$:Observable<IRegularUser[]> = EMPTY;
     usersLoading$: Observable<boolean> = EMPTY;
