@@ -33,5 +33,5 @@
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true,
     "strictTemplates": true
-  }
+  },
 }

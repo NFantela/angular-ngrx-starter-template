@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs';
-import { fromEvent } from 'rxjs/internal/observable/fromEvent';
+import { fromEvent, Observable } from 'rxjs';
 
 export function isUndefined(target: any): target is undefined {
   return target === undefined;
