@@ -1,0 +1,51 @@
+import { CustomBooleanHandler } from "../types/handlers";
+
+
+/**
+ * Decorator for checking input setter values against a custom assertion which
+ * takes value passed to input setter and component instance as arguments.
+ * It specifically checks for undefined values and prevents calls to the
+ * original setter in this case.
+ */
+export function customRequiredSetter<T extends object, K extends keyof T>(
+    assertion?: CustomBooleanHandler<T[K]>,
+    ...args: any[]
+): MethodDecorator {
+    return (
+        target: Object,
+        key,
+        {configurable, enumerable, get, set}: PropertyDescriptor,
+    ) => {
+        const {name} = target.constructor;
+
+        Object.defineProperty(target, key, {
+            configurable,
+            enumerable,
+            get,
+            set(this: T, value: T[K]) {
+                if (value !== undefined && assertion) {
+                    console.assert(
+                        assertion.call(this, value),
+                        `${String(key)} in ${name} received:`,
+                        value,
+                        ...args,
+                    );
+                }
+
+                if (!set || value === undefined) {
+                    console.assert(value !== undefined, errorSet(key, name));
+
+                    return;
+                }
+
+                set.call(this, value);
+            },
+        });
+    };
+}
+
+function errorSet(key: string | symbol, component: string): string {
+    return `Undefined was passed as ${String(
+        key,
+    )} to ${component}, setter will not be called`;
+}

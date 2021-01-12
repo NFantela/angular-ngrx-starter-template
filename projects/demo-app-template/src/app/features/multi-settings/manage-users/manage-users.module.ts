@@ -8,6 +8,7 @@ import { DemoBadgeModule } from '@demo-app/shared/demo-badge-module/demo-badge.m
 import { LazyIconsRegistryService} from '../../../shared/lazy-svg-icons/lazy-icons.registry.service';
 import { dinoCryingIcon } from '@demo-app/shared/lazy-svg-icons/lazy-icons';
 import { LazyIconsModule }  from '../../../shared/lazy-svg-icons/lazy-icons.module';
+import { LoaderModuleModule } from '@demo-app/shared/loader/loader.module';
 
 @NgModule({
   declarations: [ManageUsersComponent],
@@ -15,7 +16,8 @@ import { LazyIconsModule }  from '../../../shared/lazy-svg-icons/lazy-icons.modu
     CommonModule,
     ManageUsersRoutingModule,
     DemoBadgeModule,
-    LazyIconsModule
+    LazyIconsModule,
+    LoaderModuleModule
   ]
 })
 export class ManageUsersModule { 

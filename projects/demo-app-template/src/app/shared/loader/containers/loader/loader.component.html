@@ -1,0 +1,30 @@
+<fieldset
+    class="content"
+    [class.content_has-overlay]="hasOverlay"
+    [class.content_loading]="loading"
+    [disabled]="loading">
+    <ng-content></ng-content>
+</fieldset>
+    asdsads loader here
+<div
+    *ngIf="loading"
+    class="loader"
+>
+    <!-- add MATERIAL SPINNER HERE -->
+    <mat-spinner
+        [color]="matSpinnerOpts.color"
+        [mode]="matSpinnerOpts.mode"
+        [value]="matSpinnerOpts.value">
+    </mat-spinner>
+
+    <ng-container *ngIf="isString; else child">
+        {{ textContent }}
+    </ng-container>
+    
+    <ng-template #child>
+        <ng-container
+        [ngTemplateOutlet]="getTmplRef">   
+        </ng-container>
+    </ng-template>
+
+</div>

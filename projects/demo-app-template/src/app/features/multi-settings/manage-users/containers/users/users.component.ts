@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, ElementRef } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable, EMPTY } from 'rxjs';
+import { Observable, EMPTY, of } from 'rxjs';
 import { IRegularUser } from '../../../models/regular-user.model';
 import { selectFilteredUsers, selectSettingsUsersLoading } from '../../../multi-settings-store/selectors/users/users.selectors';
 import { actionLoadUsers, actionDeleteUserSuccess } from '../../../multi-settings-store/actions/users/users.actions';
@@ -17,15 +17,21 @@ import { takeUntil } from 'rxjs/operators';
     template: `
         <div>
             Manage users here
-            <h3 *ngIf="usersLoading$" >Users loading</h3>
-            <p demo-badge>Demo badge demo</p>
-            <p>Lazy loaded svg dino icon example</p>
-            <lazy-icon name="dino-crying"></lazy-icon>
-            <ul>
-                <li *ngFor="let user of filteredUsers$ | async" (click)="handleDeleteUser(user)">
-                    {{ user.name}} - {{ user.lastName}}
-                </li>
-            </ul>
+            <loader-comp 
+                [showLoader]="usersLoading$ | async" 
+                [textContent]="loadingMsg">
+
+                <p demo-badge>Demo badge demo</p>
+                <p>Lazy loaded svg dino icon example</p>
+                <lazy-icon name="dino-crying"></lazy-icon>
+                <ul>
+                    <li *ngFor="let user of filteredUsers$ | async" (click)="handleDeleteUser(user)">
+                        {{ user.name}} - {{ user.lastName}}
+                    </li>
+                </ul>
+
+            </loader-comp>
+            <ng-template #loadingMsg><h3>Loading users...</h3></ng-template>
         </div>
     `,
     providers:[CustomUnsubscribeService]
@@ -48,7 +54,7 @@ export class ManageUsersComponent implements OnInit {
     }
     
     filteredUsers$:Observable<IRegularUser[]> = EMPTY;
-    usersLoading$: Observable<boolean> = EMPTY;
+    usersLoading$: Observable<boolean> = of(false);
 
     ngOnInit(){
         this._store.dispatch(actionLoadUsers());
