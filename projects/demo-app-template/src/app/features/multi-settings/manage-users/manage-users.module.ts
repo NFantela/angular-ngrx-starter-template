@@ -9,6 +9,7 @@ import { LazyIconsRegistryService} from '../../../shared/lazy-svg-icons/lazy-ico
 import { dinoCryingIcon } from '@demo-app/shared/lazy-svg-icons/lazy-icons';
 import { LazyIconsModule }  from '../../../shared/lazy-svg-icons/lazy-icons.module';
 import { LoaderModuleModule } from '@demo-app/shared/loader/loader.module';
+import { ResizeModule } from '@demo-app/shared/modules/resize/resize.module';
 
 @NgModule({
   declarations: [ManageUsersComponent],
@@ -17,7 +18,8 @@ import { LoaderModuleModule } from '@demo-app/shared/loader/loader.module';
     ManageUsersRoutingModule,
     DemoBadgeModule,
     LazyIconsModule,
-    LoaderModuleModule
+    LoaderModuleModule,
+    ResizeModule
   ]
 })
 export class ManageUsersModule { 

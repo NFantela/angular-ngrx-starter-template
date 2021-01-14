@@ -19,7 +19,7 @@ import { takeUntil } from 'rxjs/operators';
             Manage users here
             <loader-comp 
                 [showLoader]="usersLoading$ | async" 
-                [textContent]="loadingMsg">
+                textContent="Loading data">
 
                 <p demo-badge>Demo badge demo</p>
                 <p>Lazy loaded svg dino icon example</p>
@@ -29,6 +29,8 @@ import { takeUntil } from 'rxjs/operators';
                         {{ user.name}} - {{ user.lastName}}
                     </li>
                 </ul>
+
+            <textarea (resizeWatcher) = "listenResizeObs($event)"></textarea>
 
             </loader-comp>
             <ng-template #loadingMsg><h3>Loading users...</h3></ng-template>
@@ -67,5 +69,9 @@ export class ManageUsersComponent implements OnInit {
     handleDeleteUser(user:IRegularUser){
         // we just shortcut to delete user success directly normaly del user action is first then service etc..
         this._store.dispatch(actionDeleteUserSuccess({user}));
+    }
+
+    listenResizeObs(e: readonly ResizeObserverEntry[]){
+        console.log(e);
     }
 }
