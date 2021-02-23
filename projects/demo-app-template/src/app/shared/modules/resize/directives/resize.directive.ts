@@ -3,7 +3,6 @@ import { CustomUnsubscribeService } from '@demo-app/shared/services/unsubscribe.
 import {Observable} from 'rxjs';
 import { ResizeService } from '../services/resize.service';
 
-// @dynamic
 @Directive({
     selector: '[resizeWatcher]',
     outputs: ['resizeWatcher'],

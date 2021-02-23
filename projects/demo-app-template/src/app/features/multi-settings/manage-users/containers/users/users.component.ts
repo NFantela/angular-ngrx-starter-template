@@ -11,6 +11,7 @@ import { WINDOW } from '@ng-web-apis/common';
 import { typedFromEvent } from '@demo-app/shared/utils/type_utils';
 import { CustomUnsubscribeService } from '@demo-app/shared/services/unsubscribe.service';
 import { takeUntil } from 'rxjs/operators';
+import { ExtendedSortable, MatSortAndPaginationOutput } from '@demo-app/shared/modules/material-server-sort-pagination/material-server-sort-pagination.directive';
 
 @Component({
     selector: 'manage-users',
@@ -35,6 +36,32 @@ import { takeUntil } from 'rxjs/operators';
             </loader-comp>
             <ng-template #loadingMsg><h3>Loading users...</h3></ng-template>
         </div>
+
+        <div (matServerSortAndPagination)="handleSortAndPagination($event)" [startSortDirection]="startSortDefault">
+            <h2>Mat table with pagination and sorting</h2>
+            <table mat-table [dataSource]="(filteredUsers$ | async) || []" class="mat-elevation-z8" matSort>
+
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="lastName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> LName </th>
+                        <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>  Email</th>
+                        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSize]="5" [pageSizeOptions]="[1, 5, 25, 100]" [length]="10"></mat-paginator>        
+        </div>
+
     `,
     providers:[CustomUnsubscribeService]
 })
@@ -58,6 +85,9 @@ export class ManageUsersComponent implements OnInit {
     filteredUsers$:Observable<IRegularUser[]> = EMPTY;
     usersLoading$: Observable<boolean> = of(false);
 
+    readonly displayedColumns: ReadonlyArray<string> = ['name', 'lastName', 'email'];
+    readonly startSortDefault:ExtendedSortable<IRegularUser> = {  id: 'lastName', start:  'desc', disableClear: false }
+
     ngOnInit(){
         this._store.dispatch(actionLoadUsers());
 
@@ -73,5 +103,9 @@ export class ManageUsersComponent implements OnInit {
 
     listenResizeObs(e: readonly ResizeObserverEntry[]){
         console.log(e);
+    }
+
+    handleSortAndPagination(ev:MatSortAndPaginationOutput<IRegularUser>){
+        console.log("mat server sort and pagination", ev)
     }
 }

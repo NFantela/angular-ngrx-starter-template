@@ -10,6 +10,12 @@ import { dinoCryingIcon } from '@demo-app/shared/lazy-svg-icons/lazy-icons';
 import { LazyIconsModule }  from '../../../shared/lazy-svg-icons/lazy-icons.module';
 import { LoaderModuleModule } from '@demo-app/shared/loader/loader.module';
 import { ResizeModule } from '@demo-app/shared/modules/resize/resize.module';
+import { MatServerSortAndPaginationModule } from '@demo-app/shared/modules/material-server-sort-pagination/material-server-sort-pagination.module';
+
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 @NgModule({
   declarations: [ManageUsersComponent],
@@ -19,7 +25,9 @@ import { ResizeModule } from '@demo-app/shared/modules/resize/resize.module';
     DemoBadgeModule,
     LazyIconsModule,
     LoaderModuleModule,
-    ResizeModule
+    ResizeModule,
+    MatServerSortAndPaginationModule,
+    MatTableModule,MatSortModule,MatPaginatorModule
   ]
 })
 export class ManageUsersModule { 
