@@ -1,4 +1,4 @@
-import {AfterViewInit, ContentChild, Directive, EventEmitter, Input, OnDestroy, Output} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, ContentChild, Directive, EventEmitter, Inject, Input, OnDestroy, Output} from '@angular/core';
 import { combineLatest, Observable, Subject} from 'rxjs';
 import {MatSort, MatSortable, Sort} from '@angular/material/sort';
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
@@ -21,6 +21,8 @@ export type ExtendedSortable<T> = MatSortable & {id: keyof T};
     selector: '[matServerSortAndPagination]',
 })
 export class MatServerSortAndPaginationDirective<SortObj> implements AfterViewInit, OnDestroy{ 
+    
+    constructor(@Inject(ChangeDetectorRef) private readonly _cdr:ChangeDetectorRef){}
 
     @Input()
     /** If this prop is passed the stream will emit first sort on ngAfterViewInit*/
@@ -52,8 +54,8 @@ export class MatServerSortAndPaginationDirective<SortObj> implements AfterViewIn
                 map(([ sort, paginator]) => this._mapToPayloadHeaders( sort as SortWithTypeSafety<SortObj>, paginator as PageEvent)),
             ).subscribe(this._matSortAndPagination)
     
-            // if we have start sort use it
-           this.startSortDirection && Promise.resolve().then(() => this.sort?.sort(this.startSortDirection as any)) 
+            this.startSortDirection && this.sort?.sort(this.startSortDirection as any);
+            this._cdr.detectChanges(); // must run detectChanges cuz we are updating parent after change detection here - or use promise resolve
         }
     }
       
