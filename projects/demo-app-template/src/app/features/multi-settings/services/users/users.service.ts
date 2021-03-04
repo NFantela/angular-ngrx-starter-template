@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { IRegularUser } from '../../models/regular-user.model';
 
 @Injectable()
 export class UsersService {
 
+    constructor(@Inject(HttpClient) private readonly _http:HttpClient){}
 
     getUsersFromDb():Observable<IRegularUser[]>{
         return of([
