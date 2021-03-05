@@ -26,15 +26,22 @@ import { ExtendedSortable, MatSortAndPaginationOutput } from '@demo-app/shared/m
                 <p>Lazy loaded svg dino icon example</p>
                 <lazy-icon name="dino-crying"></lazy-icon>
                 <ul>
-                    <li *ngFor="let user of filteredUsers$ | async" (click)="handleDeleteUser(user)">
-                        {{ user.name}} - {{ user.lastName}}
-                    </li>
+                    <single-user 
+                        *ngFor="let user of filteredUsers$ | async" 
+                        [singleUser]="user"
+                        (userClicked)="handleDeleteUser($event)">
+                    </single-user>
                 </ul>
 
             <textarea (resizeWatcher) = "listenResizeObs($event)"></textarea>
 
             </loader-comp>
             <ng-template #loadingMsg><h3>Loading users...</h3></ng-template>
+        </div>
+
+        <div>
+        <h3>Autofocus directive test</h3>
+            <input type="text" setAutoFocus />
         </div>
 
         <div (matServerSortAndPagination)="handleSortAndPagination($event)" [startSortDirection]="startSortDefault">
@@ -101,7 +108,14 @@ export class ManageUsersComponent implements OnInit {
         this._store.dispatch(actionDeleteUserSuccess({user}));
     }
 
-    listenResizeObs(e: readonly ResizeObserverEntry[]){
+    testStringUppercase(someStr:string):string{
+        if(typeof someStr === 'string'){
+            return someStr.toLocaleUpperCase();
+        }
+        return someStr;
+    }
+
+    listenResizeObs(e: any){
         console.log(e);
     }
 

@@ -6,6 +6,7 @@ import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { AuthModule } from './auth/auth.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { AuthModule } from './auth/auth.module';
     // angular
     BrowserAnimationsModule,
     BrowserModule,
+    HttpClientModule,
 
     // core & auth modules are eagerly loaded
     CoreModule,

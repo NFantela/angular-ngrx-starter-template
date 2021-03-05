@@ -15,10 +15,12 @@ import { MatServerSortAndPaginationModule } from '@demo-app/shared/modules/mater
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { SingleUserComponent } from './components/single-user/single-user.component';
+import { AutoFocusModule } from '@demo-app/shared/modules/autofocus/autofocus.module';
 
 
 @NgModule({
-  declarations: [ManageUsersComponent],
+  declarations: [ManageUsersComponent, SingleUserComponent],
   imports: [
     CommonModule,
     ManageUsersRoutingModule,
@@ -26,6 +28,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     LazyIconsModule,
     LoaderModuleModule,
     ResizeModule,
+    AutoFocusModule,
     MatServerSortAndPaginationModule,
     MatTableModule,MatSortModule,MatPaginatorModule
   ]
